@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.market.model.Tipe;
+import com.market.repository.TipeRepository;
 import com.market.service.TipeService;
-import com.market.service.repository.TipeRepository;
 
 @RestController
 @RequestMapping("/api/tipe")

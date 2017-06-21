@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.market.model.Produk;
+import com.market.repository.ProdukRepository;
 import com.market.service.ProdukService;
-import com.market.service.repository.ProdukRepository;
 
 @RestController
 @RequestMapping("/api/produk")
