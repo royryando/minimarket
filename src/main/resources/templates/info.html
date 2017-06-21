@@ -12,8 +12,12 @@
 	<p>/produk/list</p>
 	<h3>Cari berdasarkan nama produk/barang [GET]</h3>
 	<p>/produk/cari-by-nama?nama=*nama*</p>
-	<h3>Cari berdasarkan kode produk/barang [GET]</h3>
+	<h3>Cari berdasarkan kode produk/barang [GET][PATH VARIABLE]</h3>
 	<p>/produk/cari-by-kode/*kode*</p>
+	<h3>Tambah dan Ubah produk/barang [POST][REQUEST BODY]</h3>
+	<p>/produk/createupdate *data produk*</p>
+	<h3>Hapus produk [POST][PATH VARIABLE]</h3>
+	<p>/produk/delete/*kode*</p>
 	<br />
 	<h2>Tipe Produk</h2>
 	<h3>List Semua tipe produk [GET]</h3>
@@ -22,5 +26,9 @@
 	<p>/tipe/cari-by-kode/*kode*</p>
 	<h3>Cari berdasarkan nama [GET]</h3>
 	<p>/tipe/cari-by-nama?nama=*nama*</p>
+	<h3>Tambah dan Ubah Tipe produk [POST][REQUEST BODY]</h3>
+	<p>/tipe/createupdate *data produk*</p>
+	<h3>Hapus Tipe produk [POST][PATH VARIABLE]</h3>
+	<p>/tipe/delete/*id*</p>
 </body>
 </html>

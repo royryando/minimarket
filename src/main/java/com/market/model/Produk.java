@@ -10,8 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 @Table(name = "produk")
 public class Produk {
@@ -86,7 +84,7 @@ public class Produk {
 	
 	@NotNull
 	@Column(name = "tanggal_masuk")
-	@DateTimeFormat
+	//@DateTimeFormat
 	private Date tanggal_masuk;
 	
 	@NotNull
