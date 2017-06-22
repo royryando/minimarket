@@ -9,4 +9,4 @@ Team :
 5. Roy R
 6. Yusuf H
 
-SMKN 1 KATAPANG x SMKN 1 Kawa
+SMKN 1 KATAPANG x SMKN 1 KAWALI
