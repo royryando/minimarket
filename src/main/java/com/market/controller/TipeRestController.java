@@ -37,7 +37,7 @@ public class TipeRestController {
 		this.tipeService = tipeService;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = {"/list", "/list/"}, method = RequestMethod.GET)
 	public List<Tipe> findAll(){
 		return tipeService.listTipe();
 	}
@@ -47,13 +47,13 @@ public class TipeRestController {
 		return tipeService.cariTipeByKode(kode);
 	}
 	
-	@RequestMapping(value = "/cari-by-nama", method = RequestMethod.GET)
+	@RequestMapping(value = {"/cari-by-nama", "/cari-by-nama/"}, method = RequestMethod.GET)
 	@ResponseBody
 	public Tipe cariTipeByNama(String nama){
 		return tipeService.cariTipeByNama(nama);
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = {"/createupdate", "/createupdate/"}, method = RequestMethod.POST)
 	public List<Tipe> createupdate(@RequestBody Tipe tipe){
 		tipeRepository.save(tipe);
 		return tipeService.listTipe();

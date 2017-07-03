@@ -25,7 +25,16 @@ public class ProdukDao implements ProdukService {
 	@Override
 	public List<Produk> listProduk() {
 		EntityManager em = emf.createEntityManager();
-		return em.createQuery("from Produk", Produk.class).getResultList();
+		List<Produk> hasil;
+		try{
+			hasil = em.createQuery("FROM Produk ORDER BY nama ASC", Produk.class).getResultList();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			hasil = null;
+		}
+		return hasil;
 		//return em.createNativeQuery("SELECT kode_produk,nama,stok,tipe.tipe,harga_jual,harga_beli,tanggal_masuk,deskripsi FROM Produk,Tipe ORDER BY nama ASC").getResultList();
 	}
 
@@ -33,22 +42,55 @@ public class ProdukDao implements ProdukService {
 	@Override
 	public List<Produk> listProdukFilterNama(String nama) {
 		EntityManager em = emf.createEntityManager();
-		return em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%'", Produk.class).getResultList();
+		List<Produk> hasil;
+		try{
+			hasil = em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%' ORDER BY nama ASC", Produk.class).getResultList();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			hasil = null;
+		}
+		return hasil;
 		//return null;
 	}
-
+/*
+	@Override
+	public Produk stokHabis() {
+		EntityManager em = emf.createEntityManager();
+		Produk hasil;
+	}
+	*/
 	@Override
 	public Produk listProdukFilterKode(String kode) {
 		EntityManager em = emf.createEntityManager();
 		Produk hasil;
-		try{
+		try
+        {
 			hasil = em.createQuery("from Produk where kode_produk='" + kode + "'", Produk.class).getSingleResult();
 		}
 		catch(Exception ex)
 		{
-			return null;
+			System.out.println(ex);
+			hasil = null;
 		}
 		return hasil;
 	}
-	
+
+    @Override
+    public void updateStok(String kode, Integer stok) {
+	    EntityManager em = emf.createEntityManager();
+        try
+        {
+            em.getTransaction().begin();
+            em.createNativeQuery("UPDATE Produk set stok=" + stok + " WHERE kode_produk='" + kode + "'", Produk.class).executeUpdate();
+            em.getTransaction().commit();
+            System.out.println("Update berhasil");
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
+    }
+
 }

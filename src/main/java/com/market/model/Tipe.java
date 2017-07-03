@@ -35,27 +35,6 @@ public class Tipe {
 		this.setTipe(tipe);
 	}
 
-	/*
-	@OneToMany(mappedBy = "produk")
-	@JoinColumn (name="kode_produk")
-	private Produk produk;
-	
-	@SuppressWarnings("unused")
-	private Tipe(){}
-	
-	public Tipe(Integer kode_tipe){
-		this.setKode_tipe(kode_tipe);
-		
-	}
-
-	public Produk getProduk() {
-		return produk;
-	}
-
-	public void setProduk(Produk produk) {
-		this.produk = produk;
-	}
-	*/
 	public Integer getKode_tipe() {
 		return kode_tipe;
 	}

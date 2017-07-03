@@ -23,7 +23,16 @@ public class TipeDao implements TipeService {
 	
 	public List<Tipe> listTipe(){
 		EntityManager em =emf.createEntityManager();
-		return em.createQuery("from Tipe", Tipe.class).getResultList();
+		List<Tipe> hasil;
+		try{
+			hasil = em.createQuery("FROM Tipe", Tipe.class).getResultList();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			hasil = null;
+		}
+		return hasil;
 	}
 
 	@Override
@@ -31,11 +40,12 @@ public class TipeDao implements TipeService {
 		EntityManager em =emf.createEntityManager();
 		Tipe hasil;
 		try{
-			hasil = em.createQuery("from Tipe where tipe='" + nama + "'", Tipe.class).getSingleResult();
+			hasil = em.createQuery("FROM Tipe WHERE tipe='" + nama + "'", Tipe.class).getSingleResult();
 		}
 		catch(Exception ex)
 		{
-			return null;
+			System.out.println(ex);
+			hasil = null;
 		}
 		return hasil;
 	}
@@ -45,10 +55,11 @@ public class TipeDao implements TipeService {
 		EntityManager em =emf.createEntityManager();
 		Tipe hasil;
 		try{
-			 hasil = em.createQuery("from Tipe where kode_tipe='" + kode + "'", Tipe.class).getSingleResult();
+			 hasil = em.createQuery("FROM Tipe WHERE kode_tipe='" + kode + "'", Tipe.class).getSingleResult();
 		}
 		catch(Exception ex){
-			return null;
+			System.out.println(ex);
+			hasil = null;
 		}
 		return hasil;
 	}

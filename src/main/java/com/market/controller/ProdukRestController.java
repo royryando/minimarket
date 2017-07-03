@@ -37,12 +37,12 @@ public class ProdukRestController {
 		this.produkService = produkService;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = {"/list", "/list/"}, method = RequestMethod.GET)
 	public List<Produk> findAll(){
 		return produkService.listProduk();
 	}
 	
-	@RequestMapping(value = "/cari-by-nama", method = RequestMethod.GET)
+	@RequestMapping(value = {"/cari-by-nama", "cari-by-nama/"}, method = RequestMethod.GET)
 	@ResponseBody
 	public List<Produk> listProdukFilterNama(String nama){
 		return produkService.listProdukFilterNama(nama);
@@ -53,8 +53,8 @@ public class ProdukRestController {
 		return produkService.listProdukFilterKode(kode);
 	}
 	
-	@RequestMapping(value = "/createupdate", method = RequestMethod.POST)
-	public List<Produk> createUpdate(@RequestBody List<Produk> produk){
+	@RequestMapping(value = {"/createupdate", "/createupdate/"}, method = RequestMethod.POST)
+	public List<Produk> createUpdate(@RequestBody Produk produk){
 		produkRepository.save(produk);
 		return produkService.listProduk();
 	}
@@ -64,4 +64,18 @@ public class ProdukRestController {
 		produkRepository.delete(kode);
 		return produkService.listProduk();
 	}
+
+	@RequestMapping(value = "/update-stok", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Produk> update_stok(String kode, Integer stok){
+	    produkService.updateStok(kode, stok);
+	    return produkService.listProduk();
+    }
+
+/*
+	@RequestMapping(value = {"/stok-habis", "/stok-habis/"}, method = RequestMethod.GET)
+	public Produk stokhabis(){
+		return produkService.stokHabis();
+	}
+	*/
 }

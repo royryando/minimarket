@@ -18,13 +18,9 @@ public class Produk {
 
 	@Id
 	@NotNull
-	@Column(name = "kode_produk", length = 150)
+	@Column(name = "kode_produk", length = 100)
 	private String kode_produk;
-	/*
-	@NotNull
-	@Column(name = "kode_tipe", length = 11)
-	private Integer kode_tipe;
-	*/
+
 	@ManyToOne
 	@JoinColumn(name="kode_tipe")
 	private Tipe tipe;
@@ -37,37 +33,6 @@ public class Produk {
 		this.tipe = tipe;
 	}
 
-	/*
-	@ManyToOne(cascade = CascadeType.ALL)
-	private List<Tipe> tipe;
-	
-	public List<Tipe> getTipe() {
-		return tipe;
-	}
-
-	@SuppressWarnings("unused")
-	private Produk(){}
-	
-	public Produk(String kode_produk){
-		this.setKode_produk(kode_produk);
-	}
-	
-	public Produk(String kode_produk, Integer kode_tipe, String nama, Integer stok, Long harga_jual, Long harga_beli, Date tanggal_masuk, String deskripsi){
-		this.setKode_produk(kode_produk);
-		this.setKode_tipe(kode_tipe);
-		this.setNama(nama);
-		this.setStok(stok);
-		this.setHarga_jual(harga_jual);
-		this.setHarga_beli(harga_beli);
-		this.setTanggal_masuk(tanggal_masuk);
-		this.setDeskripsi(deskripsi);
-		
-	}
-	
-	public void setTipe(List<Tipe> tipe) {
-		this.tipe = tipe;
-	}
-	*/
 	@NotNull
 	@Column(name = "nama", length = 150)
 	private String nama;
@@ -77,12 +42,12 @@ public class Produk {
 	private Integer stok;
 	
 	@NotNull
-	@Column(name = "harga_jual", length = 20)
-	private Long harga_jual;
+	@Column(name = "harga_jual", length = 11)
+	private Integer harga_jual;
 	
 	@NotNull
-	@Column(name = "harga_beli", length = 20)
-	private Long harga_beli;
+	@Column(name = "harga_beli", length = 11)
+	private Integer harga_beli;
 	
 	@NotNull
 	@Column(name = "tanggal_masuk")
@@ -93,15 +58,7 @@ public class Produk {
 	@NotNull
 	@Column(name = "deskripsi", length = 255)
 	private String deskripsi;
-	/*
-	public Integer getKode_tipe() {
-		return kode_tipe;
-	}
 
-	public void setKode_tipe(Integer kode_tipe) {
-		this.kode_tipe = kode_tipe;
-	}
-	*/
 	public String getKode_produk() {
 		return kode_produk;
 	}
@@ -109,15 +66,7 @@ public class Produk {
 	public void setKode_produk(String kode_produk) {
 		this.kode_produk = kode_produk;
 	}
-	/*
-	public Integer getKode_tipe() {
-		return kode_tipe;
-	}
-	
-	public void setKode_tipe(Integer kode_tipe) {
-		this.kode_tipe = kode_tipe;
-	}
-	*/
+
 	public String getNama() {
 		return nama;
 	}
@@ -134,19 +83,19 @@ public class Produk {
 		this.stok = stok;
 	}
 
-	public Long getHarga_jual() {
+	public Integer getHarga_jual() {
 		return harga_jual;
 	}
 
-	public void setHarga_jual(Long harga_jual) {
+	public void setHarga_jual(Integer harga_jual) {
 		this.harga_jual = harga_jual;
 	}
 
-	public Long getHarga_beli() {
+	public Integer getHarga_beli() {
 		return harga_beli;
 	}
 
-	public void setHarga_beli(Long harga_beli) {
+	public void setHarga_beli(Integer harga_beli) {
 		this.harga_beli = harga_beli;
 	}
 
@@ -155,7 +104,8 @@ public class Produk {
 	}
 
 	public void setTanggal_masuk(Date tanggal_masuk) {
-		this.tanggal_masuk = tanggal_masuk;
+		Date dt = new Date();
+		this.tanggal_masuk = dt;
 	}
 
 	public String getDeskripsi() {
