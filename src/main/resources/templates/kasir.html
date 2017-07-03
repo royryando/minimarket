@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Page KASIR</title>
+
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+	<script th:src="@{/js/angular.min.js}"></script>
+	<script th:src="@{/js/app-module.js}"></script>
+	<script th:src="@{/js/kasir-controller.js}"></script>
+</head>
+
+<body ng-app="miniMarket" ng-controller="KasirController as vm">
+
+	<div>
+		<input ng-model="vm.searchNama" ng-change="vm.cariByNama(vm.searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" />
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Kode</th>
+					<th>Nama</th>
+					<th>Jenis</th>
+					<th>Harga</th>
+					<th>Status</th>
+					<th style="text-align:center;">Detail</th>
+					<th style="text-align:center;">Aksi</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="produk in vm.produk">
+					<td>{{produk.kode_produk}}</td>
+					<td>{{produk.nama}}</td>
+					<td>{{produk.tipe.tipe}}</td>
+					<td>Rp.{{produk.harga_jual}},-</td>
+					<td>
+						<element ng-if="produk.stok==0">Tidak Tersedia</element>
+						<element ng-if="produk.stok!=0">Tersedia</element>
+					</td>
+					<td style="text-align:center;"><a href="#" ng-click="vm.deskripsiProduk(produk.kode_produk)" data-toggle="modal" data-target="#deskripsi"><span class="glyphicon glyphicon-menu-hamburger"></span></a></td>
+					<td style="text-align:center;">
+						<element ng-if="produk.stok!=0"><a href="#"><span class="glyphicon glyphicon-minus"></span></a></element>
+						<element ng-if="produk.stok!=0"><a href="#"><span class="glyphicon glyphicon-plus"></span></a></element>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+        <div class="modal fade" id="deskripsi" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{vm.deskripsi.nama}}({{vm.deskripsi.kode_produk}})</h4>
+                    </div>
+                    <div class="modal-body">
+                    	<code>Tanggal input : {{vm.deskripsi.tanggal_masuk}}</code>
+                    	<br /><br />
+                        <p>{{vm.deskripsi.deskripsi}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-def ault" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+	</div>
+
+
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
