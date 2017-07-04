@@ -54,7 +54,7 @@ public class ProdukRestController {
 	}
 	
 	@RequestMapping(value = {"/createupdate", "/createupdate/"}, method = RequestMethod.POST)
-	public List<Produk> createUpdate(@RequestBody List<Produk> produk){
+	public List<Produk> createUpdate(@RequestBody Produk produk){
 		produkRepository.save(produk);
 		return produkService.listProduk();
 	}

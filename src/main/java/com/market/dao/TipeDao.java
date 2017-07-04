@@ -25,7 +25,7 @@ public class TipeDao implements TipeService {
 		EntityManager em =emf.createEntityManager();
 		List<Tipe> hasil;
 		try{
-			hasil = em.createQuery("FROM Tipe", Tipe.class).getResultList();
+			hasil = em.createQuery("FROM Tipe ORDER BY tipe ASC", Tipe.class).getResultList();
 		}
 		catch(Exception ex)
 		{

@@ -53,7 +53,7 @@ public class TipeRestController {
 		return tipeService.cariTipeByNama(nama);
 	}
 	
-	@RequestMapping(value = {"/create", "/create/"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/createupdate", "/createupdate/"}, method = RequestMethod.POST)
 	public List<Tipe> createupdate(@RequestBody Tipe tipe){
 		tipeRepository.save(tipe);
 		return tipeService.listTipe();
