@@ -46,16 +46,12 @@
                         <td>{{produk.stok}}</td>
                         <td style="text-align:center;"><a href="#" class="tooltip-right" title="Lihat data produk lebih lengkap" ng-click="vm.deskripsiProduk(produk.kode_produk)" data-toggle="modal" data-target="#divDeskripsi"><span class="glyphicon glyphicon-menu-hamburger"></span></a></td>
                         <td style="text-align:center;">
-                            <a ng-click="vm.hapusProduk(produk.kode_produk)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="vm.hapusProduk(produk.kode_produk, produk.nama)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
                             <a ng-click="vm.remCache();vm.setCache(produk.kode_produk);vm.listTipe();vm.disabled=true;vm.status='Ubah Produk';vm.deskripsiProduk(produk.kode_produk)" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-edit"></span>Ubah</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <h1>
-                {{vm.stok_habis}}
-            </h1>
 
             <button ng-click="vm.remCache();vm.listTipe();vm.disabled=false;vm.status='Tambah Produk'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
 
@@ -123,15 +119,14 @@
                                     <label class="input-group-addon">Keterangan</label>
                                     <input type="text" id="deskripsi" name="deskripsi" ng-model="vm.cacheProduk.deskripsi" class="form-control" placeholder="Keterangan Tambahan" />
                                 </div>
-                                <div class="input-group" ng-hide="true">
+                                <!--div class="input-group" ng-hide="true">
                                     <label class="input-group-addon">Tanggal Input</label>
                                     <input type="date" id="tanggal_masuk" name="tanggal_masuk" ng-model="vm.cacheProduk.tanggal_masuk" class="form-control"  />
-                                </div>
-                                <input type="button" ng-click="vm.createProduk()" value="Submit" id="submit" />
+                                </div-->
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                            <button ng-click="vm.createProduk()" type="button" class="btn btn-default" data-dismiss="modal">{{vm.status}} dan Tutup</button>
                         </div>
                         <p>{{vm.cacheProduk.kode_produk}} - {{vm.cacheProduk.nama}} - {{vm.cacheProduk.stok}} - {{vm.cacheProduk.tipe.kode_tipe}} - {{vm.cacheProduk.harga_jual}} - {{vm.cacheProduk.harga_beli}} - {{vm.cacheProduk.tanggal_masuk}}</p>
                         <p>{{vm.cacheProduk.deskripsi}}</p>
