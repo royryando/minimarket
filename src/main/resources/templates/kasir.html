@@ -79,9 +79,9 @@
 				<th>Kode</th>
                 <th>Nama</th>
 				<th>Jumlah</th>
-				<th>Total Harga</th>
-                <th>Laba</th>
-				<th style="text-align:center;">Aksi</th>
+			<th>Total Harga</th>
+			<th>Laba</th>
+			<th style="text-align:center;">Aksi</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -98,6 +98,10 @@
 			</tbody>
 		</table>
         Rp.{{total}},-<br />{{cart.length}}
+		<br />
+		<input type="number" value="0" ng-change="hitungUang()" ng-min="0" ng-model="bayar" />
+		<button ng-click="proses()">Proses</button>
+        <p>{{kembali}}</p>
 	</div>
 
 
