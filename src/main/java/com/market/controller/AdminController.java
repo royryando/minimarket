@@ -17,4 +17,9 @@ public class AdminController {
 	public String listProduk(){
 		return "admin-produk";
 	}
+
+	@RequestMapping(value = {"/tipe", "/tipe/"}, method = RequestMethod.GET)
+	public String adminTipe(){
+		return "admin-tipe";
+	}
 }
