@@ -29,16 +29,16 @@ public class Transaksi {
     private Time jam;
 
     @NotNull
-    @Column(name = "total_harga", length = 9)
-    private Long total_harga;
+    @Column(name = "total_harga", length = 11)
+    private Integer total_harga;
 
     @NotNull
-    @Column(name = "bayar", length = 9)
-    private Long bayar;
+    @Column(name = "bayar", length = 11)
+    private Integer bayar;
 
     @NotNull
-    @Column(name = "kembali", length = 9)
-    private Long kembali;
+    @Column(name = "kembali", length = 11)
+    private Integer kembali;
 
     public String getKode_transaksi() {
         return kode_transaksi;
@@ -64,27 +64,27 @@ public class Transaksi {
         this.tanggal = tanggal;
     }
 
-    public Long getTotal_harga() {
+    public Integer getTotal_harga() {
         return total_harga;
     }
 
-    public void setTotal_harga(Long total_harga) {
+    public void setTotal_harga(Integer total_harga) {
         this.total_harga = total_harga;
     }
 
-    public Long getBayar() {
+    public Integer getBayar() {
         return bayar;
     }
 
-    public void setBayar(Long bayar) {
+    public void setBayar(Integer bayar) {
         this.bayar = bayar;
     }
 
-    public Long getKembali() {
+    public Integer getKembali() {
         return kembali;
     }
 
-    public void setKembali(Long kembali) {
+    public void setKembali(Integer kembali) {
         this.kembali = kembali;
     }
 }
