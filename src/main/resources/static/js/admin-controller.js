@@ -25,6 +25,7 @@
         vm.deskripsi = [];
         vm.cacheProduk = []; // Array produk sebelum dikirim ke API CREATE atau UPDATE
         vm.tipe = [];
+        vm.cacheTipe = [];
         vm.strJSON = '';
 
         vm.deskripsiProduk = deskripsiProduk;
@@ -35,11 +36,16 @@
         vm.listTipe = listTipe;
         vm.cariNamaTipe = cariNamaTipe;
         vm.createProduk = createProduk;
+        vm.deleteTipe = deleteTipe;
+        vm.insertUpdateTipe = insertUpdateTipe;
+        vm.remCacheTipe = remCacheTipe;
+        vm.setCacheTipe = setCacheTipe;
         //vm.cekStokHabis = cekStokHabis;
 
         init();
 
         function init() {
+            listTipe();
             listProduk();
         }
 
@@ -61,9 +67,11 @@
 
         function hapusProduk(kode) {
             var url = urlAPI + "/produk/delete/" + kode;
-            $http.post(url).then(function(response) {
-                vm.produk = response.data;
-            });
+            if(confirm('Yakin ingin menghapus?')==true){
+                $http.post(url).then(function(response) {
+                    vm.produk = response.data;
+                });
+            }
         }
 
         function setCache(kode) {
@@ -76,14 +84,6 @@
 
         function remCache() {
             vm.cacheProduk = [];
-        }
-
-        function listTipe() {
-            var url = urlAPI + "/tipe/list";
-            var kP = $http.get(url);
-            kP.then(function(response) {
-                vm.tipe = response.data;
-            });
         }
 
         function cariNamaTipe(kode) {
@@ -107,7 +107,7 @@
                 stok: vm.cacheProduk.stok,
                 harga_jual: vm.cacheProduk.harga_jual,
                 harga_beli: vm.cacheProduk.harga_beli,
-                tanggal_masuk: 2012 - 12 - 12,
+                tanggal_masuk: 2012-12-12,
                 deskripsi: vm.cacheProduk.deskripsi
             });
             prom.then(function(response) {
@@ -115,6 +115,52 @@
                 vm.produk = response.data;
             });
             console.log(url);
+        }
+
+        /*
+            #####TIPE#####
+         */
+
+        function listTipe() {
+            var url = urlAPI + "/tipe/list";
+            var kP = $http.get(url);
+            kP.then(function(response) {
+                vm.tipe = response.data;
+            });
+        }
+
+        function deleteTipe(kode){
+            var url = urlAPI + '/tipe/delete/' + kode;
+            if(confirm('Yakin ingin menghapus?')==true){
+                var kP = $http.post(url);
+                kP.then(function(response){
+                    vm.tipe = response.data;
+                });
+            }
+        }
+
+        function insertUpdateTipe(){
+            if(vm.status=='Tambah'){vm.cacheTipe.kode_tipe=0;}
+            var url = urlAPI + '/tipe/createupdate';
+            var kP = $http.post(url, {
+                kode_tipe: vm.cacheTipe.kode_tipe,
+                tipe: vm.cacheTipe.tipe
+            });
+            kP.then(function(response){
+               vm.tipe = response.data;
+            });
+        }
+
+        function remCacheTipe(){
+            vm.cacheTipe = [];
+        }
+
+        function setCacheTipe(kode){
+            var url = urlAPI + "/tipe/cari-by-kode/" + kode;
+            var kP = $http.get(url);
+            kP.then(function(response) {
+                vm.cacheTipe = response.data;
+            });
         }
         /*
         		function cekStokHabis(){
