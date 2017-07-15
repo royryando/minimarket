@@ -10,5 +10,5 @@ public interface ProdukService {
 	List<Produk> listProdukFilterNama(String nama);
 	Produk listProdukFilterKode(String kode);
 	//Produk stokHabis();
-	void updateStok(String kode, Integer stok);
+	void updateStok(String kode, Integer beli);
 }

@@ -27,7 +27,7 @@ public class ProdukDao implements ProdukService {
 		EntityManager em = emf.createEntityManager();
 		List<Produk> hasil;
 		try{
-			hasil = em.createQuery("FROM Produk ORDER BY nama ASC", Produk.class).getResultList();
+			hasil = em.createQuery("FROM Produk ORDER BY nama ASC LIMIT 14", Produk.class).getResultList();
 		}
 		catch(Exception ex)
 		{
@@ -44,7 +44,7 @@ public class ProdukDao implements ProdukService {
 		EntityManager em = emf.createEntityManager();
 		List<Produk> hasil;
 		try{
-			hasil = em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%' ORDER BY nama ASC", Produk.class).getResultList();
+			hasil = em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%' ORDER BY nama ASC LIMIT 14", Produk.class).getResultList();
 		}
 		catch(Exception ex)
 		{
@@ -52,15 +52,8 @@ public class ProdukDao implements ProdukService {
 			hasil = null;
 		}
 		return hasil;
-		//return null;
 	}
-/*
-	@Override
-	public Produk stokHabis() {
-		EntityManager em = emf.createEntityManager();
-		Produk hasil;
-	}
-	*/
+
 	@Override
 	public Produk listProdukFilterKode(String kode) {
 		EntityManager em = emf.createEntityManager();
@@ -78,12 +71,12 @@ public class ProdukDao implements ProdukService {
 	}
 
     @Override
-    public void updateStok(String kode, Integer stok) {
+    public void updateStok(String kode, Integer beli) {
 	    EntityManager em = emf.createEntityManager();
         try
         {
             em.getTransaction().begin();
-            em.createNativeQuery("UPDATE Produk set stok=" + stok + " WHERE kode_produk='" + kode + "'", Produk.class).executeUpdate();
+            em.createNativeQuery("UPDATE Produk set stok=stok-" + beli + " WHERE kode_produk='" + kode + "'", Produk.class).executeUpdate();
             em.getTransaction().commit();
             System.out.println("Update berhasil");
         }

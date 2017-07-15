@@ -44,7 +44,7 @@
 					<td style="text-align:center;"><a href="#" ng-click="deskripsiProduk(produk.kode_produk)" data-toggle="modal" data-target="#deskripsi"><span class="glyphicon glyphicon-menu-hamburger"></span></a></td>
 					<td style="text-align:center;">
 						<!--element ng-if="produk.stok!=0"><a href="#" ng-click="removeFromCart(produk)"><span class="glyphicon glyphicon-minus"></span></a></element-->
-						<element ng-if="produk.stok!=0"><a href="#" ng-click="addToCart(produk)"><span class="glyphicon glyphicon-plus"></span></a></element>
+						<element ng-if="produk.stok!=0"><a href="#" ng-click="addToCart(produk, produk.stok)"><span class="glyphicon glyphicon-plus"></span></a></element>
 					</td>
 				</tr>
 			</tbody>

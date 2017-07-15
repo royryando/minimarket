@@ -1,12 +1,7 @@
-/**
- * 
- */
+
 (function(){
-	//'use strict';
 
 	var app = angular.module('miniMarket', ['ngCookies']);
-	//angular
-	//	.module('miniMarket')
     app.controller('KasirController', ['$scope','$cookies','$http', function($scope, $cookies, $http){
 
         var baseURL = 'http://localhost:8080/api';
@@ -30,6 +25,8 @@
         $scope.getKodeTransaksi = getKodeTransaksi;
         $scope.proses = proses;
         $scope.hitungUang = hitungUang;
+        $scope.resetTr = resetTr;
+        $scope.inputBarang = inputBarang;
 
         init();
 
@@ -62,10 +59,6 @@
             });
         }
 
-        /**
-         ** ###KERANJANG###
-         **/
-
          if(!angular.isUndefined($cookies.get('total'))){
             $scope.total = parseFloat($cookies.get('total'));
          }
@@ -75,7 +68,7 @@
          }
 
          // TODO cek stok sebelum tambah ke Cart
-         function addToCart(produk){
+         function addToCart(produk, stok){
             if($scope.cart.length === 0){
                 produk.jumlah_beli = 1;
                 $scope.cart.push(produk);
@@ -84,7 +77,9 @@
                 for(var i = 0; i < $scope.cart.length; i++){
                     if($scope.cart[i].kode_produk === produk.kode_produk){
                         repeat = true;
-                        $scope.cart[i].jumlah_beli += 1;
+                        if($scope.cart[i].jumlah_beli < stok){
+                            $scope.cart[i].jumlah_beli += 1;
+                        }
                     }
                 }
                 if(!repeat){
@@ -126,25 +121,16 @@
              var hariString = '';
              var tgl = new Date().getDate();
              if(tgl.length==1){tgl = '0' + tgl;}
-             //console.log('Tanggal = ' + tgg);
              var hari = new Date().getDay().toString();
-             //console.log(hari);
              var bulan = new Date().getMonth().toString();
              if(bulan.length==1){bulan = '0' + bulan;}
-             //console.log(bulan);
              var tahun = new Date().getFullYear().toString();
-             //console.log(tahun);
              var jam = new Date().getHours().toString();
              if(jam.length==1){jam = '0' + jam;}
-             //console.log(jam);
              var menit = new Date().getMinutes().toString();
              if(menit.length==1){menit = '0' + menit;}
-             //console.log(menit);
              var detik = new Date().getSeconds().toString();
              if(detik.length==1){detik = '0' + detik;}
-             //console.log(detik);
-             var miliDetik = new Date().getMilliseconds().toString();
-             //console.log(miliDetik);
 
              switch(hari){
                  case "0":
@@ -172,25 +158,22 @@
                      hariString = 'ER';
                  break;
              }
-             //console.log(hariString);
              kodeTransaksi = hariString + bulan + tahun + menit + detik;
              $scope.kode_transaksi = kodeTransaksi;
              $scope.tanggal = tahun + '-' + bulan + '-' + tgl;
              $scope.jam = jam + ':' + menit + ':' + detik;
-             //console.log(kodeTransaksi);
              return kodeTransaksi;
          }
 
          function proses(){
              var url = baseURL + '/transaksi/createupdate';
-             // TRANSAKSI
+             $scope.kode_transaksi = getKodeTransaksi();
              if($scope.bayar==0){
                  alert('Uang tidak bisa 0');
              }else if($scope.bayar<$scope.total){
-                 alert('Silahkan masukkan auang lebih')
+                 alert('Silahkan masukkan uang lebih')
              }else{
                  $scope.kembali = $scope.bayar - $scope.total;
-                 alert('Proses transaksi');
                  var p = $http.post(url, {
                      kode_transaksi: $scope.kode_transaksi,
                      tanggal: $scope.tanggal,
@@ -200,32 +183,23 @@
                      kembali: $scope.kembali
                  });
                  p.then(function(){
-                     alert('Transaksi tersimpan');
-                     alert('Mulai menyimpan data barang');
-
+                     inputBarang();
                  });
              }
-             // TRANSAKSI
+         }
 
-             //$scope.kode_transaksi = getKodeTransaksi();
-             //console.log(getKodeTransaksi());
-
-             /* CEK STATUS
-             getKodeTransaksi();
-             console.log($scope.kode_transaksi);
-             console.log($scope.tanggal);
-             console.log($scope.jam);
-             */
-
-             // RESET COOKIES
+         function resetTr(){
+             $scope.kode_transaksi = '';
+             $scope.bayar = 0;
+             $scope.kembali = 0;
              $scope.total = 0;
              $scope.cart = [];
              var expireDate = new Date();
              expireDate.setDate(expireDate.getDate() + 1);
              $cookies.putObject('cart', $scope.cart, {'expires': expireDate});
              $cookies.put('total', $scope.total, {'expires': expireDate});
-
-         }
+             init();
+        }
 
          function hitungUang(){
              if($scope.bayar<$scope.total){
@@ -236,7 +210,27 @@
          }
 
          function inputBarang(){
+             var url = baseURL + '/barang/insert';
+             var i = $scope.cart.length-1;
+             while(i!=-1){
+                 var p = $http.post(url, {
+                     id:0,
+                     kode_transaksi:$scope.kode_transaksi,
+                     kode_produk:$scope.cart[i].kode_produk,
+                     nama_produk:$scope.cart[i].nama,
+                     harga_produk:$scope.cart[i].harga_jual,
+                     jumlah_beli:$scope.cart[i].jumlah_beli,
+                     total_harga:$scope.cart[i].harga_jual*$scope.cart[i].jumlah_beli,
+                     laba:($scope.cart[i].harga_jual-$scope.cart[i].harga_beli)*$scope.cart[i].jumlah_beli
+                 });
+                 p.then(function() {
+                 });
+                 var url2 = baseURL + '/produk/update-stok?kode=' + $scope.cart[i].kode_produk + '&beli=' + $scope.cart[i].jumlah_beli;
+                 $http.get(url2);
+                 i--;
+             }
 
+             resetTr();
          }
     }]);
 

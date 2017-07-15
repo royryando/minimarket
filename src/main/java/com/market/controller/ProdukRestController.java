@@ -67,8 +67,8 @@ public class ProdukRestController {
 
 	@RequestMapping(value = "/update-stok", method = RequestMethod.GET)
     @ResponseBody
-    public List<Produk> update_stok(String kode, Integer stok){
-	    produkService.updateStok(kode, stok);
+    public List<Produk> update_stok(String kode, Integer beli){
+	    produkService.updateStok(kode, beli);
 	    return produkService.listProduk();
     }
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 (function() {
     'use strict';
 
@@ -23,7 +20,7 @@
 
         vm.produk = [];
         vm.deskripsi = [];
-        vm.cacheProduk = []; // Array produk sebelum dikirim ke API CREATE atau UPDATE
+        vm.cacheProduk = [];
         vm.tipe = [];
         vm.cacheTipe = [];
         vm.strJSON = '';
@@ -40,7 +37,6 @@
         vm.insertUpdateTipe = insertUpdateTipe;
         vm.remCacheTipe = remCacheTipe;
         vm.setCacheTipe = setCacheTipe;
-        //vm.cekStokHabis = cekStokHabis;
 
         init();
 
@@ -96,7 +92,6 @@
 
         function createProduk() {
             var url = urlAPI + "/produk/createupdate";
-            // TODO respon body ke URL
             var prom = $http.post(url, {
                 kode_produk: vm.cacheProduk.kode_produk,
                 tipe: {
@@ -107,19 +102,14 @@
                 stok: vm.cacheProduk.stok,
                 harga_jual: vm.cacheProduk.harga_jual,
                 harga_beli: vm.cacheProduk.harga_beli,
-                tanggal_masuk: 2012-12-12,
+                tanggal_masuk: "",
                 deskripsi: vm.cacheProduk.deskripsi
             });
             prom.then(function(response) {
                 vm.cacheProduk = [];
                 vm.produk = response.data;
             });
-            console.log(url);
         }
-
-        /*
-            #####TIPE#####
-         */
 
         function listTipe() {
             var url = urlAPI + "/tipe/list";
@@ -162,14 +152,5 @@
                 vm.cacheTipe = response.data;
             });
         }
-        /*
-        		function cekStokHabis(){
-        		    var url = urlAPI + "/produk/stok-habis";
-        		    var prom = $http.get(url);
-        		    prom.then(function (response) {
-                        vm.stok_habis = response.data;
-                    });
-                }
-        */
     }
 })();

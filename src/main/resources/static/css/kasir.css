@@ -1,7 +1,6 @@
 body {
-    background-color: #B1B1B1;
-    margin-top: 50px;
-    margin-right: 20%;
+    padding-right: 20%;
+    margin-top:0;
 }
 
 
@@ -16,7 +15,7 @@ NAVIGASI KASIR SEBELAH KANAN
 .kasir-body {
     margin: 0;
     padding-right: 20%;
-}
+    }
 
 .div-title-keranjang {
     top: 0;
@@ -54,6 +53,7 @@ NAVIGASI KASIR SEBELAH KANAN
     width: 20%;
     height: 100%;
     background-color: #3EB728;
+    top:50px;
 }
 
 .div-button-keranjang {
@@ -62,13 +62,12 @@ NAVIGASI KASIR SEBELAH KANAN
 }
 
 .button-keranjang {
-    margin-bottom: 4%;
 }
 
 .keranjang-body {
     margin: 2%;
     margin-top: 25px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .total-harga {
@@ -78,19 +77,4 @@ NAVIGASI KASIR SEBELAH KANAN
 
 .total-harga:hover {
     color: #000;
-}
-
-
-/*
-BODY UTAMA
-*/
-
-.body-cari {
-    margin-top: 5%;
-    width: 100%;
-    height: auto;
-}
-
-.teks-cari {
-    width: 60%;
 }
