@@ -27,7 +27,7 @@ public class ProdukDao implements ProdukService {
 		EntityManager em = emf.createEntityManager();
 		List<Produk> hasil;
 		try{
-			hasil = em.createQuery("FROM Produk ORDER BY nama ASC LIMIT 14", Produk.class).getResultList();
+			hasil = em.createQuery("FROM Produk ORDER BY nama ASC", Produk.class).getResultList();
 		}
 		catch(Exception ex)
 		{
@@ -44,7 +44,7 @@ public class ProdukDao implements ProdukService {
 		EntityManager em = emf.createEntityManager();
 		List<Produk> hasil;
 		try{
-			hasil = em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%' ORDER BY nama ASC LIMIT 14", Produk.class).getResultList();
+			hasil = em.createNativeQuery("SELECT * FROM Produk WHERE nama LIKE '%" + nama + "%' ORDER BY nama ASC", Produk.class).getResultList();
 		}
 		catch(Exception ex)
 		{
