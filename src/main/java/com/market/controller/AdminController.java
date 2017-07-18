@@ -22,4 +22,9 @@ public class AdminController {
 	public String adminTipe(){
 		return "admin-tipe";
 	}
+
+	@RequestMapping(value = {"/transaksi", "/transaksi/"}, method = RequestMethod.GET)
+    public String adminTransaksi(){
+	    return "admin-transaksi";
+    }
 }
