@@ -69,6 +69,8 @@
 
          // TODO cek stok sebelum tambah ke Cart
          function addToCart(produk, stok){
+             var expireDate = new Date();
+             expireDate.setDate(expireDate.getDate() + 1);
             if($scope.cart.length === 0){
                 produk.jumlah_beli = 1;
                 $scope.cart.push(produk);
@@ -85,15 +87,14 @@
                 if(!repeat){
                     produk.jumlah_beli = 1;
                     $scope.cart.push(produk);
+                    $scope.total += parseFloat(produk.harga_jual);
                 }
+
             }
-            var expireDate = new Date();
-            expireDate.setDate(expireDate.getDate() + 1);
             $cookies.putObject('cart', $scope.cart, {'expires': expireDate});
             $scope.cart = $cookies.getObject('cart');
-
-            $scope.total += parseFloat(produk.harga_jual);
             $cookies.put('total', $scope.total, {'expires': expireDate});
+
          }
 
          function removeFromCart(produk){
