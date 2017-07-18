@@ -23,7 +23,9 @@
         vm.cacheProduk = [];
         vm.tipe = [];
         vm.cacheTipe = [];
-        vm.strJSON = '';
+        vm.transaksi = [];
+        vm.barangTransaksi = [];
+        vm.detailPopupTransaksi = [];
 
         vm.deskripsiProduk = deskripsiProduk;
         vm.listProduk = listProduk;
@@ -37,12 +39,17 @@
         vm.insertUpdateTipe = insertUpdateTipe;
         vm.remCacheTipe = remCacheTipe;
         vm.setCacheTipe = setCacheTipe;
+        vm.listTransaksi = listTransaksi;
+        vm.listBarangTransaksi = listBarangTransaksi;
+        vm.remBarangTransaksi = remBarangTransaksi;
+        vm.setDetail = setDetail;
 
         init();
 
         function init() {
             listTipe();
             listProduk();
+            listTransaksi();
         }
 
         function listProduk() {
@@ -150,6 +157,34 @@
             var kP = $http.get(url);
             kP.then(function(response) {
                 vm.cacheTipe = response.data;
+            });
+        }
+
+        function listTransaksi(){
+            var url = urlAPI + '/transaksi/list';
+            var p = $http.get(url);
+            p.then(function(response){
+               vm.transaksi = response.data;
+            });
+        }
+
+        function remBarangTransaksi(){
+            vm.barangTransaksi = [];
+        }
+
+        function setDetail(kode, tgl, jam){
+            vm.detailPopupTransaksi = {
+                kode_transaksi: kode,
+                tanggal: tgl,
+                jam: jam
+            };
+        }
+
+        function listBarangTransaksi(kode_transaksi){
+            var url = urlAPI + '/barang/list/' + kode_transaksi;
+            var p = $http.get(url);
+            p.then(function (response) {
+                vm.barangTransaksi = response.data;
             });
         }
     }
