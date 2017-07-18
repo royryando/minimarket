@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/barang")
-public class ListBarangTransaksiController {
+public class ListBarangTransaksiRestController {
 
     @Autowired
     private ListBarangTransaksiRepository listRepo;
