@@ -27,4 +27,8 @@ public class AdminController {
     public String homeAdmin(){
 	    return "admin-main";
 	}
+	@RequestMapping(value = {"/transaksi", "/transaksi"}, method = RequestMethod.GET)
+	public String transaksi(){
+		return "admin-transaksi";
+	}
 }

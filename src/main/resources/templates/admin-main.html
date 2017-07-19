@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
 
 <title>Minimart Admin</title>
@@ -7,8 +7,7 @@
 	<link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
 	 <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
     <link th:href="@{/css/font.css}" rel="stylesheet" />
-    <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
-    
+    <link th:ef="@{/css/sidebar.css}" rel="stylesheet" />
     
     <script th:src="@{/js/angular.min.js}"></script>
     <script th:src="@{/js/app-module.js}"></script>
@@ -16,7 +15,7 @@
 	<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
   	<script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
-<body ng-app="miniMarket" ng-controller="AdminController">
+<body ng-app="miniMarket" ng-controller="AdminController as vm">
 <!-- TODO navigasi bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -30,75 +29,84 @@
                 <a class="navbar-brand" href="#" style="color:white;">Minimart</a>
              </div>
             <div id="navbar" class="navbar-collapse collapse">
-                   <li class="active nav navbar-nav"><input ng-model="searchNama" ng-change="cariByNama(searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" style="margin-top:8px;" /></li>
+                   <li class="active nav navbar-nav"></li>
                     <ul class="nav navbar-nav navbar-right">
-                     <li class="active"><a href="#">Transaksi </a></li>
-                     <li class="active"><a href="#">Produk </a></li>
-                     <li class="active"><a href="#">Tipe </a></li>
-                     <li class="active"><a href="#">Laporan </a></li>
-        			<li><a href="#">Kasir</a></li>
+                    <li class="active"><a th:href="@{/admin/transaksi}">Transaksi </a></li>
+                     <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
+                     <li class="active"><a th:href="@{/admin/tipe}">Tipe </a></li>
+                     <li class="active"><a th:href="@{/admin/laporan}">Laporan </a></li>
+                     <li class="active"><a href="#">Akun</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">{{login.username}} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" class="glyphicon glyphicon-wrench"> Akun</a></li>
-                            <li><a href="#" class="glyphicon glyphicon-off"> Logout</a></li>
+                            <li><a th:href="@{/awal}" class="glyphicon glyphicon-off"> Logout</a></li>
                         </ul>
                     </li>
                    </ul>
             </div>
            </div>
           </nav>
-          <div id="page-content-wrapper">
+          <div id="page-content-wrapper" style="padding-top: 50px;">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
 						<div class="title-menu">
-							<h1>Administrator</h1>
-							<hr>	
+							<h1 class="text-center">Administrator</h1>
+							<br />	
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-2">
-						<div class="panel panel-primary" align="center">
-							<div class="panel-body content" >
-								<i class="glyphicon glyphicon-signal" aria-hidden="true"></i>
-							</div>
-							<div class="panel-heading"><a href="#"><button class="btn btn-primary">Laporan Penjualan</button></a></div>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="panel panel-primary" align="center">
-							<div class="panel-body content" >
-								<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
-							</div>
-							<div class="panel-heading"><a href="#"><button class="btn btn-primary">Manajemen Produk</button></a></div>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="panel panel-primary" align="center">
-							<div class="panel-body content" >
-								<i class="glyphicon glyphicon-gift" aria-hidden="true"></i>
-							</div>
-							<div class="panel-heading"><a href="#"><button class="btn btn-primary">Jenis Barang</button></a></div>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<div class="panel panel-primary" align="center">
-							<div class="panel-body content" >
-								<i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-							</div>
-							<div class="panel-heading"><a href="#"><button class="btn btn-primary">Data Kasir</button></a></div>
-						</div>
-					</div>
-					
-				</div>
+				<p class="bg-info text-center">Penjualan hari ini <b>{{vm.info-barang}}</b>, dengan laba Rp.<b>{{vm.info-laba}},-</b></p>
+				<p class="bg-info text-center"><b>{{vm.info-stok}}</b> Barang telah habis, cek menu manajemen produk!</p>
+				<br />
+				<br />
             </div>
         </div>
+        <table>
+        <div class="row" style="padding-left:25%;">
+			<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-primary" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size:50px;padding-top:60px;"></i>
+							</div>
+							<div class="panel-heading"><a th:href="@{/admin/laporan}"><button class="btn btn-primary">Laporan Penjualan</button></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-primary" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style="font-size:50px;padding-top:60px;"></i>
+							</div>
+							<div class="panel-heading"><a th:href="@{/admin/produk}"><button class="btn btn-primary">Manajemen Produk</button></a>
+							</div>
+						</div>
+					</div>	
+				</div>
+					<div class="row" style="padding-left:25%;">
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-primary" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-gift" aria-hidden="true" style="font-size:50px;padding-top:60px"></i>
+							</div>
+							<div class="panel-heading"><a th:href="@{/admin/tipe}"><button class="btn btn-primary">Jenis Barang</button></a></div>
+						</div>
+					</div>
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-primary" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:50px;padding-top:60px"></i>
+							</div>
+							<div class="panel-heading"><a th:href="@{/admin/kasir}"><button class="btn btn-primary">Data Kasir</button></a></div>
+						</div>
+					</div>
+				</div>
+			</table>
           
-	<script th:src="@{/js/jquery.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!--script th:src="@{/js/materialize.min.js}"></script-->
-    <script th:src="@{/js/tooltip-viewport.js}"></script>
+    <script src="/js/tooltip-viewport.js"></script>
 </body>
 </html>

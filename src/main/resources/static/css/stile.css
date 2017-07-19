@@ -1,34 +1,3 @@
-/*
-Template Name: Bodo - Simple One Page Personal
-Author: BdgPixel
-Author URI:  http://themeforest.net/user/BdgPixel
-*/
-/* -----------------------------------------------------------
-TABLE OF CONTENTS:
---------------------------------------------------------------
-1) General
-2) Page Loader
-3) Helper
-4) Header
-5) Typography
-6) Hero
-7) Sections
- 7.a) portfolio
- 7.b) service
- 7.c) experience
- 7.d) testimonial
- 7.e) blog
- 7.f) about
- 7.g) contact
- 7.h) footer
-8) Components
- 8.a) skills
-
-
--------------------------------------------------------------
-
-------------------------------------------------------------*/
-/*-----------------------------------------1) General--------------------------------------------------*/
 @font-face {
   font-family: 'Glyphter';
   src: url('../fonts/Glyphter.eot');
@@ -104,7 +73,7 @@ img { max-width: 100%; }
   position: absolute;
   left: 50%;
   top: 50%;
-  background-image: url(../images/loader.gif);
+  /*background-image: url('/img/loader.gif');*/
   background-repeat: no-repeat;
   background-position: center center;
   text-align: center;
@@ -506,7 +475,7 @@ p {
 
 /*----------------------------------------- 6) Hero --------------------------------------------------*/
 #home {
-  background: url('../images/bg.jpg');
+  /*background: url('/img/bg.jpg');*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -773,9 +742,8 @@ ul.portfolio-image li .desc{
 .card:hover:before {
   -webkit-transform: scaleY(1);
 }
-/*---------- d. testimonial -----------*/
 #testimonial {
-  background-image: url(../images/testimonial-bg.jpg);
+  /*background-image: url(/img/testimonial-bg.jpg);*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -913,7 +881,7 @@ ul.portfolio-image li .desc{
   width: 100%;
 }
 .bg-about {
-  background: url('../images/bw-1.png');
+  /*background: url('../img/bw-1.png');*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

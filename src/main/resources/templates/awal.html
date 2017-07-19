@@ -23,7 +23,7 @@
 <body>
     <!--PRELOADER-->
     <div id="preloader">
-        <div id="status">
+        <div id="status" style="background-image: url('/img/loader.gif');">
             <img alt="logo" th:src="@{/img/logo-big.png}"></img>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="for-sticky">
             <!--LOGO-->
             <div class="col-md-2 col-xs-6 logo">
-                <a th:href="@{/awal}"><img alt="logo" class="logo-nav" th:src="@{/img/logo.png}"></img>
+                <a th:href="@{/}"><img alt="logo" class="logo-nav" th:src="@{/img/logo.png}"></img>
                 </a>
             </div>
         </div>
@@ -78,7 +78,7 @@
         <!--CONTENT-->
         <div class="content">
             <!--HOME-->
-            <section id="home">
+            <section id="home" style="background: url('/img/bg.jpg');">
                 <div class="container">
                     <div class="row">
                         <div class="wrap-hero-content">
@@ -97,7 +97,7 @@
             <!--ABOUT-->
             <section id="about">
                 <div class="col-md-6 col-xs-12 no-pad">
-                    <div class="bg-about"></div>
+                    <div class="bg-about" style="background:url('/img/bw-1.png');"></div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 white-col">
                     <div class="row">
@@ -125,7 +125,7 @@
             </section>
             <!--/.ABOUT END-->
 
-            <!--WORK-->
+            <!--WORK>
             <section class="grey-bg mar-tm-10" id="work">
                 <div class="container">
                     <div class="row">
@@ -134,24 +134,24 @@
                                 <span>Praktek Kerja Lapangan - 2017</span>
                             </h3>
                             <p class="content-detail">
-
+									Persyaratan untuk mengikuti Ujian Nasional.
                             </p>
                         </div>
                         <div class="col-md-9 content-right">
                             <!--PORTFOLIO IMAGE-->
                             <ul class="portfolio-image">
                                 <li class="col-md-6">
-                                    <a th:href="@{img/bw-1.png}"><img alt="image" th:src="@{/img/bw-1.png}"></img>
+                                    <a th:href="@{img/bw-2.png}"><img alt="image" th:src="@{/img/bw-2.png}"></img>
                                         <div class="decription-wrap">
                                             <div class="image-bg">
-                                                <p class="desc">Pekerjaan Kami</p>
+                                                <p class="desc">Tugas Kami</p>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <li class="col-md-6">
+                        <!-- li class="col-md-6">
                             <a th:href="@{/img/bw-2.png}"><img alt="image" th:src="@{/img/bw-2.png}"></img>
                                 <div class="decription-wrap">
                                     <div class="image-bg">
@@ -161,12 +161,12 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
+                        </li-->
                     </div>
                 </div>
-            </section>
+            </section >
             <!--TESTIMONIAL-->
-            <section id="testimonial">
+            <section id="testimonial" style="background-image: url(/img/testimonial-bg.jpg);">
                 <div class="container">
                     <div class="row wrap-testimonial">
                         <div class="col-md-10 col-md-offset-1">

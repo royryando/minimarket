@@ -1,9 +1,10 @@
+<!-- Roy -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Management Tipe</title>
+    <title>CRUD Produk</title>
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
@@ -16,6 +17,7 @@
 
 <body ng-app="miniMarket" ng-controller="AdminController as vm">
 
+<!-- TODO navigasi bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -34,7 +36,6 @@
                      <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
                      <li class="active"><a th:href="@{/admin/tipe}">Tipe </a></li>
                      <li class="active"><a th:href="@{/admin/laporan}">Laporan </a></li>
-                     <li class="active"><a href="#">Akun</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> Administrator<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -53,45 +54,59 @@
         <table class="table table-bordered bar-tabel" style="margin-top:10%;">
             <thead>
             <tr>
-                <th>Jenis Produk</th>
+                <th>Kode Transaksi</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Total</th>
+                <th>Bayar</th>
+                <th>Kembali</th>
                 <th style="text-align:center;">Aksi</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="tipe in vm.tipe">
-                <td>{{tipe.tipe}}</td>
-                <td style="text-align:center;">
-                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a ng-click="vm.remCacheTipe();vm.setCacheTipe(tipe.kode_tipe);vm.status='Ubah';" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-edit"></span>Ubah</a>
-                </td>
+            <tr ng-repeat="tr in vm.transaksi">
+                <td>{{tr.kode_transaksi}}</td>
+                <td>{{tr.tanggal}}</td>
+                <td>{{tr.jam}}</td>
+                <td>Rp.{{tr.total_harga}},-</td>
+                <td>Rp.{{tr.bayar}},-</td>
+                <td>Rp.{{tr.kembali}},-</td>
+                <td style="text-align:center;"><a href="#" class="tooltip-right" title="Lihat daftar barang" ng-click="vm.listBarangTransaksi(tr.kode_transaksi);vm.setDetail(tr.kode_transaksi, tr.tanggal, tr.jam)" data-toggle="modal" data-target="#divDaftarBarang"><span class="glyphicon glyphicon-menu-hamburger"></span>List Barang</a></td>
             </tr>
             </tbody>
         </table>
 
 
-        <button ng-click="vm.remCacheTipe();vm.status='Tambah'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
-
-        <div class="modal fade" id="editTambah" role="dialog">
+        <div class="modal fade" id="divDaftarBarang" role="dialog">
             <div class="modal-dialog">
 
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{vm.status}} Tipe</h4>
+                        <h4 class="modal-title">{{vm.detailPopupTransaksi.kode_transaksi}}</h4>
                     </div>
                     <div class="modal-body">
-                        <form name="produk">
-                            <div class="input-group">
-                                <input ng-show="false" type="text" id="kode_tipe" name="kode_tipe" ng-model="vm.cacheTipe.kode_tipe" class="form-control" placeholder="Kode Tipe" required="true" />
-                            </div>
-                            <div class="input-group">
-                                <label class="input-group-addon">Nama Tipe</label>
-                                <input type="text" id="tipe" name="tipe" ng-model="vm.cacheTipe.tipe" class="form-control" placeholder="Nama Tipe" required="true" autofocus="true" />
-                            </div>
-                        </form>
+                        <code>Waktu Transaksi : {{vm.detailPopupTransaksi.tanggal + ' | ' + vm.detailPopupTransaksi.jam}}</code>
+                        <br /><br />
+                        <table class="table">
+                            <thead>
+                            <tr style="background-color: lightgray">
+                                <td>Nama Barang(Kode)</td>
+                                <td>Harga Satuan(Beli)</td>
+                                <td>Total Harga(Laba)</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="pr in vm.barangTransaksi">
+                                <td>{{pr.nama_produk}} ({{pr.kode_produk}})</td>
+                                <td>Rp.{{pr.harga_produk}},- ({{pr.jumlah_beli}})</td>
+                                <td>Rp.{{pr.total_harga}},- (Rp.{{pr.laba}},-)</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
-                        <button ng-click="vm.insertUpdateTipe()" class="btn btn-primary" data-dismiss="modal">{{vm.status}} dan Tutup</button>
+                        <button type="button" ng-click="vm.remBarangTransaksi()" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     </div>
                 </div>
 
@@ -103,6 +118,7 @@
 </div>
 <script th:src="@{/js/jquery.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/tooltip-viewport.js}"></script>
 </body>
 
 </html>
