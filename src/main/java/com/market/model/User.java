@@ -25,7 +25,7 @@ public class User {
     @Column(name = "password")
     @Length(min = 5, message = "*Password Setidaknya 5 Karakter")
     @NotEmpty(message = "*Masukan Password")
-    @Transient
+    //@Transient
     private String password;
 
     @Column(name = "name")

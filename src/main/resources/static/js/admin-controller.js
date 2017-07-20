@@ -21,6 +21,7 @@
         vm.produk = [];
         vm.deskripsi = [];
         vm.cacheProduk = [];
+        vm.user = [];
         vm.tipe = [];
         vm.cacheTipe = [];
         vm.transaksi = [];
@@ -43,6 +44,7 @@
         vm.listBarangTransaksi = listBarangTransaksi;
         vm.remBarangTransaksi = remBarangTransaksi;
         vm.setDetail = setDetail;
+        vm.listUser = listUser;
 
         init();
 
@@ -186,6 +188,10 @@
             p.then(function (response) {
                 vm.barangTransaksi = response.data;
             });
+        }
+
+        function listUser(){
+
         }
     }
 })();

@@ -1,5 +1,6 @@
 package com.market.service;
 
+import com.market.model.Role;
 import com.market.model.User;
 
 /**

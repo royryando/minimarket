@@ -12,4 +12,14 @@ public class MainController {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/denied")
+    public String denied(){
+        return "denied";
+    }
+
+    @RequestMapping("/404")
+    public String notFound(){
+        return "not-found";
+    }
 }

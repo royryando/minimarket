@@ -1,0 +1,80 @@
+<!-- Roy -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Manajemen Akun</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin.css}" rel="stylesheet" />
+    <!--link th:href="@{/css/materialize.min.css}" rel="stylesheet" /-->
+
+    <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/app-module.js}"></script>
+    <script th:src="@{/js/admin-controller.js}"></script>
+</head>
+
+<body ng-app="miniMarket" ng-controller="AdminController as vm">
+
+
+<div class="container">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Jenis Produk</th>
+                <th style="text-align:center;">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tipe in vm.tipe">
+                <td>{{tipe.tipe}}</td>
+                <td style="text-align:center;">
+                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a ng-click="vm.remCacheTipe();vm.setCacheTipe(tipe.kode_tipe);vm.status='Ubah';" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-edit"></span>Ubah</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <button ng-click="vm.remCacheTipe();vm.status='Tambah'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
+
+        <div class="modal fade" id="editTambah" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{vm.status}} Tipe</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="produk">
+                            <div class="input-group">
+                                <input ng-show="false" type="text" id="kode_tipe" name="kode_tipe" ng-model="vm.cacheTipe.kode_tipe" class="form-control" placeholder="Kode Tipe" required="true" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-group-addon">Nama Tipe</label>
+                                <input type="text" id="tipe" name="tipe" ng-model="vm.cacheTipe.tipe" class="form-control" placeholder="Nama Tipe" required="true" autofocus="true" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button ng-click="vm.insertUpdateTipe()" class="btn btn-primary" data-dismiss="modal">{{vm.status}} dan Tutup</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
