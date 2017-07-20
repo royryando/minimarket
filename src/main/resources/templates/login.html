@@ -1,28 +1,81 @@
+<!-- Rani Triani Gustia -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Login</title>
-</head>
-<body>
-<form action="/login" method="post">
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <div>
-        <div>
-            <input type="text" name="username"
-                   placeholder="User Name" />
+<head>
+    <title>Minimarket</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    
+</head>
+
+<body style="background-color:grey;">
+    <div class="form">
+        <ul>
+            <center><a class="pesan-error">Username atau password salah</a></center>
+        </ul>
+        <ul class="tab-group success">
+            <li class="tab active"><a href="#login">Masuk</a></li>
+            <li class="tab"><a href="#signup">Daftar</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div id="login">
+                <h1>Silahkan Masuk</h1>
+
+                <form action="./login" method="post">
+
+                    <div class="field-wrap">
+                        <label>Username<span class="req">*</span></label>
+                        <input type="text" name="username" required="true" autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>Password<span class="req">*</span></label>
+                        <input type="password" name="password" required="true" autocomplete="off" />
+                    </div>
+
+
+                    <button class="button button-block success">Masuk Sekarang</button>
+
+                </form>
+
+            </div>
+            <div id="signup">
+                <h1>Buat akun sekarang</h1>
+
+                <form action="./" method="post">
+
+                    <div class="field-wrap">
+                        <div class="field-wrap">
+                            <label>Nama Lengkap<span class="req">*</span></label>
+                            <input type="text" autocomplete="off" required="true" />
+                        </div>
+
+                    <div class="field-wrap">
+                        <label>Username<span class="req">*</span></label>
+                        <input type="text" autocomplete="off" required="true" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>Password<span class="req">*</span></label>
+                        <input type="password" autocomplete="off" required="true"></input>
+                    </div>
+
+                    <button type="submit" class="button button-block success">Mulai Daftar</button>
+				</div>
+                </form>
+            </div>
         </div>
-        <div>
-            <input type="password" name="password"
-                   placeholder="Password" />
-        </div>
-        <div>
-            <input type="submit" value="Sign In" />
-        </div>
-    </div>
-    <input type="hidden" name="${_csrf.parameterName}"
-           value="${_csrf.token}" />
-</form>
+       </div>
+        <!-- tab-content -->
+    <!-- /form -->
+    <script src='./js/jquery.js'></script>
+
+    <script src="./js/index.js"></script>
 
 </body>
+
 </html>

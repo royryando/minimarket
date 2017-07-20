@@ -1,10 +1,10 @@
-<!-- Roy -->
+<!-- Rani Triani Gustia -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
-    <title>CRUD Produk</title>
+    <title>Admin Produk</title>
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
@@ -17,13 +17,40 @@
 </head>
 
 <body ng-app="miniMarket" ng-controller="AdminController as vm">
-
-<!-- TODO navigasi bar -->
+	<!-- TODO navigasi bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" th:href="@{/admin/}" style="color:white;">Minimart</a>
+             </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                   <li class="active nav navbar-nav"><input ng-model="searchNama" ng-change="cariByNama(searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" style="margin-top:8px;" /></li>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a th:href="@{/admin/transaksi}">Transaksi </a></li>
+                     <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
+                     <li class="active"><a th:href="@{/admin/tipe}">Tipe </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> Administrator<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/setting/admin}" class="glyphicon glyphicon-wrench"> Akun</a></li>
+                            <li><a th:href="@{/logout}" class="glyphicon glyphicon-off"> Logout</a></li>
+                        </ul>
+                    </li>
+                   </ul>
+            </div>
+           </div>
+          </nav>
 
     <div class="container">
 
         <div>
-            <table class="table">
+            <table class="table table-bordered bar-tabel" style="margin-top:10%;"> 
                 <thead>
                     <tr>
                         <th>Kode</th>
@@ -46,15 +73,14 @@
                         <td>{{produk.stok}}</td>
                         <td style="text-align:center;"><a href="#" class="tooltip-right" title="Lihat data produk lebih lengkap" ng-click="vm.deskripsiProduk(produk.kode_produk)" data-toggle="modal" data-target="#divDeskripsi"><span class="glyphicon glyphicon-menu-hamburger"></span></a></td>
                         <td style="text-align:center;">
-                            <a ng-click="vm.hapusProduk(produk.kode_produk)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a ng-click="vm.remCache();vm.setCache(produk.kode_produk);vm.listTipe();vm.disabled=true;vm.status='Ubah';vm.deskripsiProduk(produk.kode_produk)" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-edit"></span>Ubah</a>
+                            <a ng-click="vm.hapusProduk(produk.kode_produk, produk.nama)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-trash"></span></a>
+                            <a ng-click="vm.remCache();vm.setCache(produk.kode_produk);vm.listTipe();vm.disabled=true;vm.status='Ubah';vm.deskripsiProduk(produk.kode_produk)" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-pencil"></span></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-
-            <button ng-click="vm.remCache();vm.listTipe();vm.disabled=false;vm.status='Tambah'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
+            <button ng-click="vm.remCache();vm.listTipe();vm.disabled=false;vm.status='Tambah'" class="btn btn-success" data-toggle="modal" data-target="#editTambah">Tambah</button>
 
             <div class="modal fade" id="divDeskripsi" role="dialog">
                 <div class="modal-dialog">
@@ -65,12 +91,15 @@
                             <h4 class="modal-title">{{vm.deskripsi.nama}}({{vm.deskripsi.kode_produk}})</h4>
                         </div>
                         <div class="modal-body">
-                            <code>Terakhir diperbarui : {{vm.deskripsi.tanggal_masuk}}</code>
+                        	<code>Stok : {{vm.deskripsi.stok}}</code>
+                        	<br />
+                            <code>Tanggal input : {{vm.deskripsi.tanggal_masuk}}</code>
                             <br /><br />
+                            <b>Deskripsi:</b>
                             <p>{{vm.deskripsi.deskripsi}}</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Tutup</button>
                         </div>
                     </div>
 
@@ -83,51 +112,45 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">{{vm.status}} Produk</h4>
+                            <h4 class="modal-title">{{vm.status}}</h4>
                         </div>
                         <div class="modal-body">
                             <form name="produk">
-                                <div class="input-group">
-                                    <label class="input-group-addon">Kode Produk</label>
+                                <div>
+                                    <label for="kode_produk">Kode Produk</label>
                                     <input type="text" id="kode_produk" name="kode_produk" ng-model="vm.cacheProduk.kode_produk" ng-disabled="vm.disabled" class="form-control" placeholder="Kode Produk" required="true" autofocus="true" />
                                 </div>
-                                <div class="input-group">
-                                    <label class="input-group-addon">Nama</label>
+                                <div>
+                                    <label for="nama">Nama</label>
                                     <input type="text" id="nama" name="nama" ng-model="vm.cacheProduk.nama" class="form-control" placeholder="Nama Produk" required="true" />
                                 </div>
-                                <div class="input-group">
-                                    <label class="input-group-addon">Jenis</label>
-                                    <!--input type="text" id="kode_tipe" name="kode_tipe" ng-model="vm.cacheProduk.kode_tipe" class="form-control" placeholder="Jenis Produk" required="true" /-->
-
+                                <div>
+                                    <label for="kode_tipe">Jenis</label>
                                     <select name="tipe" class="form-control" ng-model="vm.cacheProduk.tipe.kode_tipe">
                                         <option ng-repeat="tipe in vm.tipe" ng-value="tipe.kode_tipe">{{tipe.tipe}}</option>
                                     </select>
                                 </div>
 
-                                <div class="input-group">
-                                    <label class="input-group-addon">Harga Beli</label>
+                                <div>
+                                    <label for="harga_beli">Harga Beli</label>
                                     <input type="number" ng-min="0" ng-max="99999999999" id="harga_beli" name="harga_beli" ng-model="vm.cacheProduk.harga_beli" class="form-control" placeholder="Harga Beli" required="true" />
                                 </div>
-                                <div class="input-group">
-                                    <label class="input-group-addon">Harga Jual</label>
+                                <div>
+                                    <label for="harga_jual">Harga Jual</label>
                                     <input type="number" ng-min="0" ng-max="99999999999" id="harga_jual" name="harga_jual" ng-model="vm.cacheProduk.harga_jual" class="form-control" placeholder="Harga Jual" required="true" />
                                 </div>
-                                <div class="input-group">
-                                    <label class="input-group-addon">Stok</label>
+                                <div>
+                                    <label for="stok">Stok</label>
                                     <input type="number" ng-min="0" ng-max="99999999999" id="stok" name="stok" ng-model="vm.cacheProduk.stok" class="form-control" placeholder="Stok Produk" ng-required="true" />
                                 </div>
-                                <div class="input-group">
-                                    <label class="input-group-addon">Keterangan</label>
+                                <div>
+                                    <label for="deskripsi">Keterangan</label>
                                     <input type="text" id="deskripsi" name="deskripsi" ng-model="vm.cacheProduk.deskripsi" class="form-control" placeholder="Keterangan Tambahan" />
-                                </div>
-                                <div class="input-group" ng-hide="true">
-                                    <label class="input-group-addon">Tanggal Input</label>
-                                    <input type="date" id="tanggal_masuk" name="tanggal_masuk" ng-model="vm.cacheProduk.tanggal_masuk" class="form-control"  />
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button ng-click="vm.createProduk()" class="btn btn-primary" data-dismiss="modal">{{vm.status}} dan Tutup</button>
+                            <button ng-click="vm.createProduk()" type="button" class="btn btn-success" data-dismiss="modal">{{vm.status}} dan Tutup</button>
                         </div>
                     </div>
 

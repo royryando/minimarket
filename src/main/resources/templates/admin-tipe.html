@@ -1,15 +1,14 @@
-<!-- Roy -->
+<!-- Rani Triani Gustia -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
-    <title>CRUD Tipe</title>
+    <title>Management Tipe</title>
 
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
     <link th:href="@{/css/admin.css}" rel="stylesheet" />
-    <!--link th:href="@{/css/materialize.min.css}" rel="stylesheet" /-->
 
     <script th:src="@{/js/angular.min.js}"></script>
     <script th:src="@{/js/app-module.js}"></script>
@@ -18,12 +17,39 @@
 
 <body ng-app="miniMarket" ng-controller="AdminController as vm">
 
-<!-- TODO navigasi bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" th:href="@{/admin/}" style="color:white;">Minimart</a>
+             </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                   <li class="active nav navbar-nav"><input ng-model="searchNama" ng-change="cariByNama(searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" style="margin-top:8px;" /></li>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a th:href="@{/admin/transaksi}">Transaksi </a></li>
+                     <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
+                     <li class="active"><a th:href="@{/admin/tipe}">Tipe </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> Administrator<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/setting/admin}" class="glyphicon glyphicon-wrench"> Akun</a></li>
+                            <li><a th:href="@{/logout}" class="glyphicon glyphicon-off"> Logout</a></li>
+                        </ul>
+                    </li>
+                   </ul>
+            </div>
+           </div>
+          </nav>
 
 <div class="container">
 
     <div>
-        <table class="table">
+        <table class="table table-bordered bar-tabel" style="margin-top:10%;">
             <thead>
             <tr>
                 <th>Jenis Produk</th>
@@ -34,15 +60,15 @@
             <tr ng-repeat="tipe in vm.tipe">
                 <td>{{tipe.tipe}}</td>
                 <td style="text-align:center;">
-                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a ng-click="vm.remCacheTipe();vm.setCacheTipe(tipe.kode_tipe);vm.status='Ubah';" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-edit"></span>Ubah</a>
+                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a ng-click="vm.remCacheTipe();vm.setCacheTipe(tipe.kode_tipe);vm.status='Ubah';" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>
             </tbody>
         </table>
 
 
-        <button ng-click="vm.remCacheTipe();vm.status='Tambah'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
+        <button ng-click="vm.remCacheTipe();vm.status='Tambah'" class="btn btn-success" data-toggle="modal" data-target="#editTambah">Tambah</button>
 
         <div class="modal fade" id="editTambah" role="dialog">
             <div class="modal-dialog">
@@ -64,7 +90,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button ng-click="vm.insertUpdateTipe()" class="btn btn-primary" data-dismiss="modal">{{vm.status}} dan Tutup</button>
+                        <button ng-click="vm.insertUpdateTipe()" class="btn btn-success" data-dismiss="modal">{{vm.status}} dan Tutup</button>
                     </div>
                 </div>
 

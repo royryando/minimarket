@@ -1,0 +1,111 @@
+<!-- Rani Triani Gustia -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+<title>Minimart Admin</title>
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+	 <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
+    <link th:href="@{/css/font.css}" rel="stylesheet" />
+    <link th:ef="@{/css/sidebar.css}" rel="stylesheet" />
+    
+    <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/app-module.js}"></script>
+    <script th:src="@{/js/admin-controller.js}"></script>
+	<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+  	<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body ng-app="miniMarket" ng-controller="AdminController as vm">
+<!-- TODO navigasi bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" th:href="@{/admin/}" style="color:white;">Minimart</a>
+             </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                   <li class="active nav navbar-nav"></li>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a th:href="@{/admin/transaksi}">Transaksi </a></li>
+                     <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
+                     <li class="active"><a th:href="@{/admin/tipe}">Tipe </a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"> Administrator<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/setting/admin}" class="glyphicon glyphicon-wrench"> Akun</a></li>
+                            <li><a th:href="@{/logout}" class="glyphicon glyphicon-off"> Logout</a></li>
+                        </ul>
+                    </li>
+                   </ul>
+            </div>
+           </div>
+          </nav>
+          <div id="page-content-wrapper" style="padding-top: 50px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+						<div class="title-menu">
+							<h1 class="text-center">Administrator</h1>
+							<br />	
+						</div>
+					</div>
+				</div>
+				<p class="bg-success text-center">Penjualan hari ini <b>{{vm.info-barang}}</b>, dengan laba Rp.<b>{{vm.info-laba}},-</b></p>
+				<p class="bg-success text-center"><b>{{vm.info-stok}}</b> Barang telah habis, cek menu manajemen produk!</p>
+				<br />
+				<br />
+            </div>
+        </div>
+        <table>
+        <div class="row" style="padding-left:25%;">
+			<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-success" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-stats" aria-hidden="true" style="font-size:50px;padding-top:60px;"></i>
+							</div>
+							<div class="panel-heading" style="background-color: #3EB728;"><a th:href="@{/admin/transaksi}"><button class="btn btn-success">Laporan Transaksi</button></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-success" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style="font-size:50px;padding-top:60px;"></i>
+							</div>
+							<div class="panel-heading" style="background-color: #3EB728;"><a th:href="@{/admin/produk}"><button class="btn btn-success">Manajemen Produk</button></a>
+							</div>
+						</div>
+					</div>	
+				</div>
+					<div class="row" style="padding-left:25%;">
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-success" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-gift" aria-hidden="true" style="font-size:50px;padding-top:60px"></i>
+							</div>
+							<div class="panel-heading" style="background-color: #3EB728;"><a th:href="@{/admin/tipe}"><button class="btn btn-success">Jenis Barang</button></a></div>
+						</div>
+					</div>
+					<div class="col-md-4" style="width:35%;">
+						<div class="panel panel-success" align="center">
+							<div class="panel-body content" style="height:180px;">
+								<i class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:50px;padding-top:60px"></i>
+							</div>
+							<div class="panel-heading" style="background-color: #3EB728;"><a th:href="@{/admin/kasir}"><button class="btn btn-success">Data Kasir</button></a></div>
+						</div>
+					</div>
+				</div>
+			</table>
+          
+	<script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!--script th:src="@{/js/materialize.min.js}"></script-->
+    <script src="/js/tooltip-viewport.js"></script>
+</body>
+</html> 
