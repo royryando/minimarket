@@ -22,6 +22,7 @@
         vm.deskripsi = [];
         vm.cacheProduk = [];
         vm.user = [];
+        vm.cacheUser = [];
         vm.tipe = [];
         vm.cacheTipe = [];
         vm.transaksi = [];
@@ -45,6 +46,7 @@
         vm.remBarangTransaksi = remBarangTransaksi;
         vm.setDetail = setDetail;
         vm.listUser = listUser;
+        vm.createupdateUser = createupdateUser;
 
         init();
 
@@ -191,7 +193,32 @@
         }
 
         function listUser(){
+            var url = urlAPI + '/user/list';
+            var p = $http.get(url);
+            p.then(function(response){
+               vm.user = response.data;
+            });
+        }
 
+        function createupdateUser(){
+            var url = urlAPI + '/user/createupdate';
+            var p = $http.post(url, {
+                "id": 0,
+                "username": vm.cacheUser.username,
+                "password": vm.cacheUser.password,
+                "name": vm.cacheUser.name,
+                "active": 1,
+                "roles":[
+                    {
+                        "role_id": 0,
+                        "role": 'ROLE_KASIR'
+                    }
+                ]
+            });
+            p.then(function(response){
+                vm.cacheUser = [];
+                vm.user = response.data;
+            });
         }
     }
 })();
