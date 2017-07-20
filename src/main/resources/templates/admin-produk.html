@@ -1,3 +1,4 @@
+<!-- Rani Triani Gustia -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -26,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="#" style="color:white;">Minimart</a>
+                <a class="navbar-brand" th:href="@{/admin/}" style="color:white;">Minimart</a>
              </div>
             <div id="navbar" class="navbar-collapse collapse">
                    <li class="active nav navbar-nav"><input ng-model="searchNama" ng-change="cariByNama(searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" style="margin-top:8px;" /></li>
@@ -80,7 +81,7 @@
                 </tbody>
             </table>
 
-            <button ng-click="vm.remCache();vm.listTipe();vm.disabled=false;vm.status='Tambah'" class="btn btn-primary" data-toggle="modal" data-target="#editTambah">Tambah</button>
+            <button ng-click="vm.remCache();vm.listTipe();vm.disabled=false;vm.status='Tambah'" class="btn btn-success" data-toggle="modal" data-target="#editTambah">Tambah</button>
 
             <div class="modal fade" id="divDeskripsi" role="dialog">
                 <div class="modal-dialog">
@@ -99,7 +100,7 @@
                             <p>{{vm.deskripsi.deskripsi}}</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Tutup</button>
                         </div>
                     </div>
 
@@ -150,7 +151,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button ng-click="vm.createProduk()" type="button" class="btn btn-primary" data-dismiss="modal">{{vm.status}} dan Tutup</button>
+                            <button ng-click="vm.createProduk()" type="button" class="btn btn-success" data-dismiss="modal">{{vm.status}} dan Tutup</button>
                         </div>
                     </div>
 
