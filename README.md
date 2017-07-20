@@ -8,3 +8,5 @@ Team :
 4. Reki A
 5. Roy R
 6. Yusuf H
+
+SMKN 1 KATAPANG x SMKN 1 KAWALI

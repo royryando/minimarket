@@ -1,0 +1,95 @@
+<!-- Roy -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>CRUD Produk</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin.css}" rel="stylesheet" />
+
+    <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/app-module.js}"></script>
+    <script th:src="@{/js/admin-controller.js}"></script>
+</head>
+
+<body ng-app="miniMarket" ng-controller="AdminController as vm">
+
+<!-- TODO navigasi bar -->
+
+<div class="container">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Kode Transaksi</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Total</th>
+                <th>Bayar</th>
+                <th>Kembali</th>
+                <th style="text-align:center;">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="tr in vm.transaksi">
+                <td>{{tr.kode_transaksi}}</td>
+                <td>{{tr.tanggal}}</td>
+                <td>{{tr.jam}}</td>
+                <td>Rp.{{tr.total_harga}},-</td>
+                <td>Rp.{{tr.bayar}},-</td>
+                <td>Rp.{{tr.kembali}},-</td>
+                <td style="text-align:center;"><a href="#" class="tooltip-right" title="Lihat daftar barang" ng-click="vm.listBarangTransaksi(tr.kode_transaksi);vm.setDetail(tr.kode_transaksi, tr.tanggal, tr.jam)" data-toggle="modal" data-target="#divDaftarBarang"><span class="glyphicon glyphicon-menu-hamburger"></span>List Barang</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div class="modal fade" id="divDaftarBarang" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{vm.detailPopupTransaksi.kode_transaksi}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <code>Waktu Transaksi : {{vm.detailPopupTransaksi.tanggal + ' | ' + vm.detailPopupTransaksi.jam}}</code>
+                        <br /><br />
+                        <table class="table">
+                            <thead>
+                            <tr style="background-color: lightgray">
+                                <td>Nama Barang(Kode)</td>
+                                <td>Harga Satuan(Beli)</td>
+                                <td>Total Harga(Laba)</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="pr in vm.barangTransaksi">
+                                <td>{{pr.nama_produk}} ({{pr.kode_produk}})</td>
+                                <td>Rp.{{pr.harga_produk}},- ({{pr.jumlah_beli}})</td>
+                                <td>Rp.{{pr.total_harga}},- (Rp.{{pr.laba}},-)</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="vm.remBarangTransaksi()" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/tooltip-viewport.js}"></script>
+</body>
+
+</html>
