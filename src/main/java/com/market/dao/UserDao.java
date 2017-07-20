@@ -58,10 +58,4 @@ public class UserDao implements UserService {
         //em.createNativeQuery("insert into user_role(`user_id`, `role_id`) values(" + user1.getId() + ",2)").executeUpdate();
     }
 
-    @Override
-    public List<User> findAllKasir() {
-        EntityManager em = emf.createEntityManager();
-
-        return em.createQuery("from User where User.Roles.role='ROLE_KASIR'", User.class).getResultList();
-    }
 }

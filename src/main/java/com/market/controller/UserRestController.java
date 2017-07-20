@@ -29,8 +29,7 @@ public class UserRestController {
 
     @RequestMapping(value = {"/list", "/list/"}, method = RequestMethod.GET)
     public Iterable<User> listUser(){
-        //return userRepository.findAll();
-        return userService.findAllKasir();
+        return userRepository.findAll();
     }
 
     @RequestMapping(value = {"/createupdate", "/createupdate/"}, method = RequestMethod.POST)
