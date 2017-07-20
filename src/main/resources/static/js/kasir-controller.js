@@ -15,7 +15,7 @@
         $scope.kode_transaksi = '';
         $scope.bayar = 0;
         $scope.kembali = 0;
-        $scope.setting = []
+        $scope.setting = [];
 
         $scope.listProduk = listProduk;
         $scope.deskripsiProduk = deskripsiProduk;
@@ -238,13 +238,13 @@
         }
 
         function ubahPassword(){
-            var url = baseURL + '/user/password?id=2' + '&password=' + setting.password;
+            var url = baseURL + '/user/password?id=2' + '&password=' + $scope.setting.password;
             $http.get(url);
             $scope.setting = [];
         }
 
         function update(){
-            var url = baseURL + '/user/update?id=2&username=' + setting.username + '&name=' + setting.name;
+            var url = baseURL + '/user/update?id=2&username=' + $scope.setting.username + '&name=' + $scope.setting.name;
             $http.get(url);
             $scope.setting = [];
         }
