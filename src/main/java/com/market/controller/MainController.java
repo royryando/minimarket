@@ -1,6 +1,7 @@
 package com.market.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -21,5 +22,15 @@ public class MainController {
     @RequestMapping("/404")
     public String notFound(){
         return "not-found";
+    }
+
+    @RequestMapping("/setting/admin")
+    public String akunAdmin(){
+        return "setting-admin";
+    }
+
+    @RequestMapping("/setting/kasir")
+    public String akunKasir(){
+        return "setting-kasir";
     }
 }

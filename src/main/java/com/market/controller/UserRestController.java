@@ -43,4 +43,21 @@ public class UserRestController {
         userRepository.delete(id);
         return userRepository.findAll();
     }
+
+    @RequestMapping(value = "/search/{id}", method = RequestMethod.GET)
+    public User searchUser(@PathVariable Integer id){
+        return userRepository.findOne(id);
+    }
+
+    @RequestMapping(value = {"/password", "/password/"}, method = RequestMethod.GET)
+    @ResponseBody
+    public void gantiPassword(Integer id, String password){
+        userService.gantiPassword(id, password);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @ResponseBody
+    public void update(Integer id, String name, String username){
+        userService.ubahData(id, username, name);
+    }
 }

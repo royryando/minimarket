@@ -10,7 +10,7 @@ public class AdminController {
 
 	@RequestMapping(value = {"", "/"})
 	public String indexAdmin(){
-		return null;
+		return "admin-main";
 	}
 	
 	@RequestMapping(value = {"/produk", "/produk/"}, method = RequestMethod.GET)
@@ -27,4 +27,9 @@ public class AdminController {
     public String adminTransaksi(){
 	    return "admin-transaksi";
     }
+
+    @RequestMapping(value = {"/kasir", "/kasir/"}, method = RequestMethod.GET)
+	public String adminAkun(){
+    	return "admin-user";
+	}
 }

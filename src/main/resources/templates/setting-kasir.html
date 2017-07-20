@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Setting Akun</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
+
+    <script th:src="@{/js/angular.min.js}"></script>
+    <script th:src="@{/js/kasir-controller.js}"></script>
+</head>
+<body ng-app="miniMarket" ng-controller="KasirController">
+
+<form>
+
+    <label for="username">Username</label>
+    <input type="text" ng-model="setting.username" id="username" name="username" />
+
+    <label for="name">Nama</label>
+    <input type="text" ng-model="setting.name" id="name" name="name" />
+
+    <button class="btn btn-primary" ng-click="update()">Simpan</button>
+</form>
+<a href="#" data-toggle="modal" data-target="#gantiPassword">Ganti password</a>
+
+<div class="modal fade" id="gantiPassword" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ganti Password</h4>
+            </div>
+            <div class="modal-body">
+                <form name="produk">
+                    <div class="input-group">
+                        <label class="input-group-addon">Password baru</label>
+                        <input type="text" id="pwd" name="pwd" ng-model="setting.password" class="form-control" placeholder="Password Baru" required="true" autofocus="true" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="ubahPassword()" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

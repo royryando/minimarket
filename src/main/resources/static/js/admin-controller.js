@@ -28,6 +28,8 @@
         vm.transaksi = [];
         vm.barangTransaksi = [];
         vm.detailPopupTransaksi = [];
+        vm.cachePassword = [];
+        vm.setting = [];
 
         vm.deskripsiProduk = deskripsiProduk;
         vm.listProduk = listProduk;
@@ -46,7 +48,12 @@
         vm.remBarangTransaksi = remBarangTransaksi;
         vm.setDetail = setDetail;
         vm.listUser = listUser;
-        vm.createupdateUser = createupdateUser;
+        /*vm.createupdateUser = createupdateUser;
+        vm.deleteUser = deleteUser;
+        vm.remCacheUser = remCacheUser;
+        vm.setCacheUser = setCacheUser;*/
+        vm.ubahPassword = ubahPassword;
+        vm.update = update;
 
         init();
 
@@ -54,6 +61,7 @@
             listTipe();
             listProduk();
             listTransaksi();
+            listUser();
         }
 
         function listProduk() {
@@ -200,14 +208,21 @@
             });
         }
 
+        function update(){
+            var url = urlAPI + '/user/update?id=1&username=' + vm.setting.username + '&name=' + vm.setting.name;
+            $http.get(url);
+            vm.setting = [];
+        }
+/*
         function createupdateUser(){
             var url = urlAPI + '/user/createupdate';
+            if(vm.status=='Tambah'){vm.cacheUser.id=0;}
             var p = $http.post(url, {
-                "id": 0,
+                "id": vm.cacheUser.id,
                 "username": vm.cacheUser.username,
                 "password": vm.cacheUser.password,
                 "name": vm.cacheUser.name,
-                "active": 1,
+                "active": vm.cacheUser.active,
                 "roles":[
                     {
                         "role_id": 0,
@@ -220,5 +235,34 @@
                 vm.user = response.data;
             });
         }
+
+        function deleteUser(id){
+            var url = urlAPI + '/user/delete/' + id;
+            if(confirm('Yakin ingin menghapus?')==true) {
+                var p = $http.post(url);
+                p.then(function (response) {
+                    vm.user = response.data;
+                });
+            }
+        }
+
+        function remCacheUser(){
+            vm.cacheUser = [];
+        }
+
+        function setCacheUser(id){
+            var url = urlAPI + '/user/search/' + id;
+            var p = $http.get(url);
+            p.then(function(response){
+               vm.cacheUser = response.data;
+            });
+        }
+*/
+        function ubahPassword(){
+            var url = urlAPI + '/user/password?id=1' + '&password=' + vm.setting.password;
+            $http.get(url);
+            vm.setting = [];
+        }
+
     }
 })();
