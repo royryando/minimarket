@@ -3,7 +3,7 @@ _Minimarket Team Project (Spring Boot)_
 
 Team : 
 1. Citra F
-2. Irfan S (hadir)
+2. Irfan S
 3. Rani T
 4. Reki A
 5. Roy R
