@@ -23,7 +23,7 @@ public class AdminController {
 	    return "admin-tipe";
     }
 	
-	@RequestMapping(value = {"/home", "/home/"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
     public String homeAdmin(){
 	    return "admin-main";
 	}
