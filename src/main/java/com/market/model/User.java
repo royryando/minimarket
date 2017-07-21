@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created by Roy on 16/07/2017.
- */
 @Entity
 @Table(name = "user")
 public class User {

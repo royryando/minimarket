@@ -7,9 +7,6 @@ import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.util.Date;
 
-/**
- * Created by Roy on 28/06/2017.
- */
 @Entity
 @Table(name = "transaksi")
 public class Transaksi {

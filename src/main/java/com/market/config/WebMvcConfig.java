@@ -5,9 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/**
- * Created by Roy on 19/07/2017.
- */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 

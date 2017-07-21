@@ -5,24 +5,38 @@
     <title>Setting Akun</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
-
+	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+	
+	
     <script th:src="@{/js/angular.min.js}"></script>
     <script th:src="@{/js/app-module.js}"></script>
     <script th:src="@{/js/admin-controller.js}"></script>
 </head>
-<body ng-app="miniMarket" ng-controller="AdminController as vm">
+<body ng-app="miniMarket" ng-controller="AdminController as vm" style="background-color:grey;margin-top:100px;">
 
-<form>
+<div class="form">
+	 <div class="tab-content">
+	 	
+	 	<div id="login">
+           <h1>Setting Akun - Admin</h1>
+       <form action="./login" method="post">
+             
+         <div class="field-wrap">
+                        <label>Username<span class="req">*</span></label>
+                        <input type="text" ng-model="vm.setting.username" name="username" id="username" required="true" autocomplete="off" />
+                    </div>
 
-    <label for="username">Username</label>
-    <input type="text" ng-model="vm.setting.username" id="username" name="username" />
-
-    <label for="name">Nama</label>
-    <input type="text" ng-model="vm.setting.name" id="name" name="name" />
-
-    <button class="btn btn-primary" ng-click="vm.update()">Simpan</button>
-</form>
-<a href="#" data-toggle="modal" data-target="#gantiPassword">Ganti password</a>
+                    <div class="field-wrap">
+                        <label>Nama<span class="req">*</span></label>
+                        <input type="text" ng-model="vm.setting.name" id="name" name="password" required="true" autocomplete="off" />
+                    </div>
+		<a th:href="@{/admin}"><button class="button button-block success"  ng-click="vm.update()">Simpan</button></a>
+	   
+	</form>
+</div>
+<a href="#" data-toggle="modal" data-target="#gantiPassword" style="padding-left:215px;">Ganti password</a>
 
 <div class="modal fade" id="gantiPassword" role="dialog">
     <div class="modal-dialog">
@@ -32,18 +46,16 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Ganti Password</h4>
             </div>
-            <div class="modal-body">
-                <form name="produk">
-                    <div class="input-group">
-                        <label class="input-group-addon">Password baru</label>
+             <div class="modal-body">
                         <input type="password" id="pwd" name="pwd" ng-model="vm.setting.password" class="form-control" placeholder="Password Baru" required="true" autofocus="true" />
-                    </div>
-                </form>
+                   
             </div>
             <div class="modal-footer">
-                <button ng-click="vm.ubahPassword()" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                <a th:href="@{/admin}"><button ng-click="vm.ubahPassword()" class="btn btn-success" data-dismiss="modal">Simpan</button></a>
             </div>
         </div>
+    </div>
+   </div>
 
     </div>
 </div>

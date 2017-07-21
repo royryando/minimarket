@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-/**
- * Created by Roy on 28/06/2017.
- */
 @Service
 public class TransaksiDao implements TransaksiService {
 

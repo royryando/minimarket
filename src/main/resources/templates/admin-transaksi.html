@@ -51,7 +51,7 @@
 
     <div>
         <table class="table table-bordered bar-tabel" style="margin-top:10%;">
-            <thead>
+            <thead style="background-color:#3EB728; color:white;">
             <tr>
                 <th>Kode Transaksi</th>
                 <th>Tanggal</th>
@@ -89,13 +89,13 @@
                         <br /><br />
                         <table class="table">
                             <thead>
-                            <tr style="background-color: lightgray">
+                            <tr style="background-color: #3EB728;color:white;">
                                 <td>Nama Barang(Kode)</td>
                                 <td>Harga Satuan(Beli)</td>
                                 <td>Total Harga(Laba)</td>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody> 
                             <tr ng-repeat="pr in vm.barangTransaksi">
                                 <td>{{pr.nama_produk}} ({{pr.kode_produk}})</td>
                                 <td>Rp.{{pr.harga_produk}},- ({{pr.jumlah_beli}})</td>
@@ -105,7 +105,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" ng-click="vm.remBarangTransaksi()" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="button" ng-click="vm.remBarangTransaksi()" class="btn btn-success" data-dismiss="modal">Tutup</button>
                     </div>
                 </div>
 

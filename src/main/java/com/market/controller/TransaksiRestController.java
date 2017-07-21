@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by Roy on 28/06/2017.
- */
 @RestController
 @RequestMapping("/api/transaksi")
 public class TransaksiRestController {

@@ -2,9 +2,6 @@ package com.market.model;
 
 import javax.persistence.*;
 
-/**
- * Created by Roy on 16/07/2017.
- */
 @Entity
 @Table(name = "role")
 public class Role {

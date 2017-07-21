@@ -12,9 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-/**
- * Created by Roy on 19/07/2017.
- */
 @Service
 public class UserDao implements UserService {
 

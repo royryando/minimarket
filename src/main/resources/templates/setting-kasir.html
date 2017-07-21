@@ -5,26 +5,37 @@
     <title>Setting Akun</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/tooltip-viewport.css}" rel="stylesheet" />
-
+	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    
     <script th:src="@{/js/angular.min.js}"></script>
     <script th:src="@{/js/angular-animate.min.js}"></script>
     <script th:src="@{/js/angular-cookies.min.js}"></script>
     <script th:src="@{/js/angular-sanitize.min.js}"></script>
     <script th:src="@{/js/kasir-controller.js}"></script>
 </head>
-<body ng-app="miniMarket" ng-controller="KasirController">
+<body ng-app="miniMarket" ng-controller="KasirController" style="background-color:grey;margin-top:100px;">
 
-<form>
-
-    <label for="username">Username</label>
-    <input type="text" ng-model="setting.username" id="username" name="username" />
-
-    <label for="name">Nama</label>
-    <input type="text" ng-model="setting.name" id="name" name="name" />
-
-    <button class="btn btn-primary" ng-click="update()">Simpan</button>
-</form>
-<a href="#" data-toggle="modal" data-target="#gantiPassword">Ganti password</a>
+<div class="form">
+	 <div class="tab-content">
+	 	
+	 	<div id="login">
+           <h1>Setting Akun - Kasir</h1>
+       <form action="./login" method="post">
+	<div class="field-wrap">
+    	<label>Username<span class="req">*</span></label>
+   	    <input type="text" ng-model="setting.username" name="username" id="username" required="true" autocomplete="off" />
+     </div>
+     <div class="field-wrap">
+          <label>Nama<span class="req">*</span></label>
+     	  <input type="text" ng-model="setting.name" id="name" name="password" required="true" autocomplete="off" />
+     </div>
+    <a th:href="@{/kasir}"><button class="button button-block success"  ng-click="update()">Simpan</button></a>
+	   
+	</form>
+</div>
+<a href="#" data-toggle="modal" data-target="#gantiPassword" style="padding-left:215px;">Ganti password</a>
 
 <div class="modal fade" id="gantiPassword" role="dialog">
     <div class="modal-dialog">
@@ -35,17 +46,14 @@
                 <h4 class="modal-title">Ganti Password</h4>
             </div>
             <div class="modal-body">
-                <form name="produk">
-                    <div class="input-group">
-                        <label class="input-group-addon">Password baru</label>
                         <input type="password" id="pwd" name="pwd" ng-model="setting.password" class="form-control" placeholder="Password Baru" required="true" autofocus="true" />
-                    </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button ng-click="ubahPassword()" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-            </div>
+                <a th:href="@{/kasir}"><button ng-click="ubahPassword()" class="btn btn-success" data-dismiss="modal">Simpan</button></a>
+         </div>
         </div>
+    </div>
+   </div>
 
     </div>
 </div>

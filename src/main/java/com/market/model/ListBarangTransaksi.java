@@ -3,9 +3,6 @@ package com.market.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Roy on 28/06/2017.
- */
 @Entity
 @Table(name = "transaksi_barang")
 public class ListBarangTransaksi {
