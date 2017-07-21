@@ -9,7 +9,5 @@ public class MiniMarketApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MiniMarketApplication.class, args);
-		BCryptPasswordEncoder x = new BCryptPasswordEncoder();
-		System.out.println(x.encode("kasir"));
 	}
 }

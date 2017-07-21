@@ -29,7 +29,7 @@
                 <a class="navbar-brand" th:href="@{/admin/}" style="color:white;">Minimart</a>
              </div>
             <div id="navbar" class="navbar-collapse collapse">
-                   <li class="active nav navbar-nav"><input ng-model="searchNama" ng-change="cariByNama(searchNama)" type="text" id="searchProduk" class="form-control" placeholder="Nama Produk" style="margin-top:8px;" /></li>
+                   <li class="active nav navbar-nav"></li>
                     <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a th:href="@{/admin/transaksi}">Transaksi </a></li>
                      <li class="active"><a th:href="@{/admin/produk}">Produk </a></li>
@@ -60,7 +60,7 @@
             <tr ng-repeat="tipe in vm.tipe">
                 <td>{{tipe.tipe}}</td>
                 <td style="text-align:center;">
-                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus produk"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a ng-click="vm.deleteTipe(tipe.kode_tipe)" href="#" class="tooltip-right" title="Hapus tipe"><span class="glyphicon glyphicon-trash"></span></a>
                     <a ng-click="vm.remCacheTipe();vm.setCacheTipe(tipe.kode_tipe);vm.status='Ubah';" href="#" data-toggle="modal" data-target="#editTambah"><span class="glyphicon glyphicon-pencil"></span></a>
                 </td>
             </tr>
